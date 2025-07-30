@@ -1,11 +1,19 @@
-import React from 'react'
+import React from "react";
 
-const Button = () => {
+const Button = ({ text = "Submit", action = () => {} }) => {
   return (
     <div>
-        <button>Save</button>
+      <button
+        onClick={action}
+        style={{ borderRadius: "12px", color: "#030dddff", background: "#fff" }}
+      >
+        {text}
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;
+
+
+// Route, Router, Navigation, hooks: useEffect, Components

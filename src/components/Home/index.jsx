@@ -1,72 +1,34 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 
 
 
 const Home = () => {
-  const studentData = [
-  {
-    id: 1,
-    name: "Balogun Joseph",
-    gendar: "male",
-    state: "Oyo",
-    school: {
-      primary: "Oluyole extention Primary School",
-      secondary: "Aiyedaade",
-      University: "FUTA",
-    },
-    image: {
-    filepath: "",
-    systempath: "",
-    name: "",
-    extention: "",
-    }
- },
-{
-  id: 2,
-  name: "Ayomide",
-  gendar: "Female",
-  state: "Osun",
-  school: {
-    primary: "Oluyole extention Primary School",
-    secondary: "Aiyedaade",
-    University: "FUTA",
-  },
-  image: {
-   filepath: "",
-   systempath: "",
-   name: "",
-   extention: "",
-  }
-},
-]
 
-  const [value, setValue] = useState([])
-  const [error, setError] = useState("");
+  const [songs, setSongs] = useState([])
+
   useEffect(()=> {
-    if(studentData.length > 0){
-      setValue(studentData);
-    } else{
-       setError("No Data")
-    }
-
-  }, []);
+    fetch('https://robo-music-api.onrender.com/music/my-api')
+    .then(response => response.json())
+    .then(data => {
+      setSongs(data)
+      console.log(data)
+    })
+    .catch(console.log('Could not fetch'));
+  }, [songs]);
 
   return (
-    <div style={{ margin: "120px"}}>
-    <div>Home</div>
-    {error}
-    <div>
-      {value?.map((i, index) => (
-        <ul key={index}>
-        <li>{i.name}</li>
-        <li>{i.gendar}</li>
-        <li>{i.state}</li>
-        </ul>
-    ))}
+    <div className='parent'>
+        {songs.map((song, index )=> (
+          <Link key={index} to={`/song/details/${song.id}`}>
+            <img src={song.songImage} alt="" />;
+            <h3>{song.songTitle}</h3>;
+            <p>{song.artistName}</p>;
+            <audio src={song.songUrl}></audio>
+          </Link>
+        ))}
     </div>
-
-    </div>
-  )
+  );
 }
 
 export default Home

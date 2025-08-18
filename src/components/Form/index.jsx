@@ -1,16 +1,28 @@
 import React from 'react'
 import Input from '../Input/Input'
 import Button from '../ButtonV2/Button'
+import useFormValidation from './formValidation'
 
 const Form = () => {
+  const { handleSubmit, register, errors, clearErrors, } = useFormValidation();
+
+  const formSubmit =(data) => {
+    console.log(data)
+  }
+  
   return (
     <div className='formContainer'>
      <p className='formHeader'>Sign Up</p>
      <div className='formContent'>
-        <Input type="text" placeholder="Enter your name" label="Name" required={true} />
-        <Input type="email" placeholder="Enter your email" label="Email" required={true} />
-        <Input type="password" placeholder="Enter your password" label="Password" required={true} />
-        <Button text={"Save"} bgColor={"red"} colorParams={"#fff"} action={() => alert("Here is my data")}/>
+      <form onSubmit={handleSubmit(formSubmit)}>
+        <Input {...register("name")} name={"name"} type="text" placeholder="Enter your name" label="Name"  onKeyUp={() => clearErrors("name")}/>
+        {errors.name && <div style={{color: "red"}}>{errors.name.message}</div>}
+        <Input {...register("email")} name={"email"} type="email" placeholder="Enter your email" label="Email" onKeyUp={() => clearErrors("email")} />
+        {errors.email && <div style={{ color: "red"}}>{errors.email.message}</div> }
+        <Input {...register("password")} name={"password"} type="password" placeholder="Enter your password" label="Password"  onKeyUp={() => clearErrors("password")}/>
+        {errors.password && <div style={{color: "red"}}>{errors.password.message}</div>}
+        <Button type={"submit"} text={"Save"} bgColor={"red"} colorParams={"#fff"} action={() => {}} />
+        </form>
      </div>
     </div>
   )

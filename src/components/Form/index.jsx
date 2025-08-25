@@ -15,11 +15,11 @@ const Form = () => {
      <p className='formHeader'>Sign Up</p>
      <div className='formContent'>
       <form onSubmit={handleSubmit(formSubmit)}>
-        <Input {...register("name")} name={"name"} type="text" placeholder="Enter your name" label="Name"  onKeyUp={() => clearErrors("name")}/>
+        <Input {...register("name")} name={"name"} type="text" placeholder="Enter your name" label="Name"  onChange={() => clearErrors("name")}/>
         {errors.name && <div style={{color: "red"}}>{errors.name.message}</div>}
-        <Input {...register("email")} name={"email"} type="email" placeholder="Enter your email" label="Email" onKeyUp={() => clearErrors("email")} />
+        <Input {...register("email")} name={"email"} type="email" placeholder="Enter your email" label="Email" onChange={() => clearErrors("email")} />
         {errors.email && <div style={{ color: "red"}}>{errors.email.message}</div> }
-        <Input {...register("password")} name={"password"} type="password" placeholder="Enter your password" label="Password"  onKeyUp={() => clearErrors("password")}/>
+        <Input {...register("password")} name={"password"} type="password" placeholder="Enter your password" label="Password"  onChange={() => clearErrors("password")}/>
         {errors.password && <div style={{color: "red"}}>{errors.password.message}</div>}
         <Button type={"submit"} text={"Save"} bgColor={"red"} colorParams={"#fff"} action={() => {}} />
         </form>

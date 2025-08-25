@@ -71,3 +71,25 @@
     height: 100%;
     gap: 20px;
 }
+
+.shopping {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.shoppingCard{
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    padding: 20px;
+    border: #000 solid 2px;
+    height: fit-content;
+}
+.shoppingContainer{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 5px;
+  max-width: 800px;
+}

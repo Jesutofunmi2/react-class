@@ -6,7 +6,7 @@ const Input = ({
   label = "Free",
   required = false,
   name = "default",
-  onKeyUp= () => {},
+  onChange = () => {},
 }) => {
   return (
     <div style={{ display: "flex", gap: "10px" }}>
@@ -17,7 +17,7 @@ const Input = ({
         style={{ width: "200px", height: "30px" }}
         placeholder={placeholder}
         required={required}
-        onKeyUp={onKeyUp}
+        onChange={onChange}
       />
     </div>
   );
